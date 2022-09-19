@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByBirthDateBetween(from, to);
     }
 
-    public User deleteById(Long id) {
-        return userRepository.deleteUserById(id);
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
     }
 
     private User patchFields(User patchedUser, User originUser) {

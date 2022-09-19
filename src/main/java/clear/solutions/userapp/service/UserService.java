@@ -12,5 +12,5 @@ public interface UserService {
 
     List<User> findAllByBirthDateBetween(String fromDate, String toDate);
 
-    User deleteById(Long id);
+    void deleteById(Long id);
 }

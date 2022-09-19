@@ -8,6 +8,7 @@ import clear.solutions.userapp.model.User;
 import clear.solutions.userapp.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,9 @@ public class UserController {
     private final ToDtoMapper<UserResponseDto, User> userResponseMapper;
 
     @PostMapping()
-    public UserResponseDto createUser(@RequestBody UserRequestDto dto) {
+    public UserResponseDto createUser(@RequestBody UserRequestDto dto,
+                                      HttpServletResponse response) {
+        response.setStatus(201);
         return userResponseMapper.toDto(userService.create(userRequestMapper.toModel(dto)));
     }
 
@@ -44,8 +47,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public UserResponseDto deleteUserById(@PathVariable Long id) {
-        return userResponseMapper.toDto(userService.deleteById(id));
+    public void deleteUserById(@PathVariable Long id) {
+        userService.deleteById(id);
     }
 
     @GetMapping
