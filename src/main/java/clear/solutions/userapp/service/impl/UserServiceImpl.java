@@ -1,11 +1,13 @@
 package clear.solutions.userapp.service.impl;
 
+import clear.solutions.userapp.exception.DataProcessException;
 import clear.solutions.userapp.model.User;
 import clear.solutions.userapp.repository.UserRepository;
 import clear.solutions.userapp.service.UserService;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,7 +40,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public void deleteById(Long id) {
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            throw new DataProcessException("No User with id " + id + " exists!");
+        }
     }
 
     private User patchFields(User patchedUser, User originUser) {
