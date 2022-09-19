@@ -14,6 +14,6 @@ public class BirthdayValidator implements ConstraintValidator<Birthday, LocalDat
         if (date == null) {
             return true;
         }
-        return date.plusYears(minUserAge).isBefore(LocalDate.now()) ;
+        return date.plusYears(minUserAge).isBefore(LocalDate.now());
     }
 }

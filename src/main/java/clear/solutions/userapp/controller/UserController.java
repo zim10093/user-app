@@ -46,7 +46,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserResponseDto updateFullUser(@PathVariable Long id, @RequestBody @Valid UserRequestDto dto) {
+    public UserResponseDto updateFullUser(@PathVariable Long id,
+                                          @RequestBody @Valid UserRequestDto dto) {
         return userResponseMapper.toDto(userService.update(id, userRequestMapper.toModel(dto)));
     }
 
@@ -56,7 +57,8 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserResponseDto> findAllByDate(@RequestParam String fromDate, @RequestParam String toDate) {
+    public List<UserResponseDto> findAllByDate(@RequestParam String fromDate,
+                                               @RequestParam String toDate) {
         return userService.findAllByBirthDateBetween(fromDate, toDate).stream()
                 .map(userResponseMapper::toDto)
                 .collect(Collectors.toList());
