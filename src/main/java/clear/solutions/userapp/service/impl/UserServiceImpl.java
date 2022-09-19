@@ -36,6 +36,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllByBirthDateBetween(String fromDate, String toDate) {
         LocalDate from = LocalDate.parse(fromDate);
         LocalDate to = LocalDate.parse(toDate);
+        if (from.isAfter(to)) {
+            throw new RuntimeException("Invalid date range. Before date is after to date.");
+        }
         return userRepository.findAllByBirthDateBetween(from, to);
     }
 
