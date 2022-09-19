@@ -19,4 +19,5 @@ public class UserPatchRequestDto {
     @Birthday
     private LocalDate birthDate;
     private String phoneNumber;
+    private String address;
 }

@@ -15,6 +15,7 @@ public class UserPatchRequestMapper implements ToModelMapper<UserPatchRequestDto
         user.setLastName(dto.getLastName());
         user.setBirthDate(dto.getBirthDate());
         user.setPhoneNumber(dto.getPhoneNumber());
+        user.setAddress(dto.getAddress());
         return user;
     }
 }

@@ -13,4 +13,5 @@ public class UserResponseDto {
     private String lastName;
     private LocalDate birthDate;
     private String phoneNumber;
+    private String address;
 }

@@ -22,4 +22,5 @@ public class UserRequestDto {
     @Birthday
     private LocalDate birthDate;
     private String phoneNumber;
+    private String address;
 }

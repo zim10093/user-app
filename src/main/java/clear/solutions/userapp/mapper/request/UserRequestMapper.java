@@ -15,6 +15,7 @@ public class UserRequestMapper implements ToModelMapper<UserRequestDto, User> {
         user.setLastName(dto.getLastName());
         user.setBirthDate(dto.getBirthDate());
         user.setPhoneNumber(dto.getPhoneNumber());
+        user.setAddress(dto.getAddress());
         return user;
     }
 }

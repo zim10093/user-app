@@ -16,6 +16,7 @@ public class UserResponseMapper implements ToDtoMapper<UserResponseDto, User> {
         dto.setLastName(model.getLastName());
         dto.setBirthDate(model.getBirthDate());
         dto.setPhoneNumber(model.getPhoneNumber());
+        dto.setAddress(model.getAddress());
         return dto;
     }
 }
