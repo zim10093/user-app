@@ -3,6 +3,7 @@ package clear.solutions.userapp.service.impl;
 import clear.solutions.userapp.model.User;
 import clear.solutions.userapp.repository.UserRepository;
 import clear.solutions.userapp.service.UserService;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,25 +15,48 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
     public User update(Long id, User user) {
-        return null;
+        user.setId(id);
+        return userRepository.save(user);
     }
 
     @Override
     public User patch(Long id, User user) {
-        return null;
+        User originUser = userRepository.getReferenceById(id);
+        return userRepository.save(patchFields(user, originUser));
     }
 
     @Override
     public List<User> findAllByBirthDateBetween(String fromDate, String toDate) {
-        return null;
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        return userRepository.findAllByBirthDateBetween(from, to);
     }
 
     public User deleteById(Long id) {
         return userRepository.deleteUserById(id);
+    }
+
+    private User patchFields(User patchedUser, User originUser) {
+        if (patchedUser.getEmail() != null) {
+            originUser.setEmail(patchedUser.getEmail());
+        }
+        if (patchedUser.getFirstName() != null) {
+            originUser.setFirstName(patchedUser.getFirstName());
+        }
+        if (patchedUser.getLastName() != null) {
+            originUser.setLastName(patchedUser.getLastName());
+        }
+        if (patchedUser.getBirthDate() != null) {
+            originUser.setBirthDate(patchedUser.getBirthDate());
+        }
+        if (patchedUser.getPhoneNumber() != null) {
+            originUser.setPhoneNumber(patchedUser.getPhoneNumber());
+        }
+        return originUser;
     }
 }
