@@ -1,8 +1,9 @@
 package clear.solutions.userapp.controller;
 
 import clear.solutions.userapp.dto.request.UserRequestDto;
-import clear.solutions.userapp.dto.response.AllUsersResponseDto;
+import clear.solutions.userapp.dto.response.UserResponseDto;
 import clear.solutions.userapp.model.User;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping
-    public AllUsersResponseDto findAllByDate(@PathVariable String date) {
+    public List<UserResponseDto> findAllByDate(@PathVariable String date) {
         //TODO
         return null;
     }
