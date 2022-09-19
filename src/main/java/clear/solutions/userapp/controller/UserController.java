@@ -4,7 +4,6 @@ import clear.solutions.userapp.dto.request.UserRequestDto;
 import clear.solutions.userapp.dto.response.UserResponseDto;
 import clear.solutions.userapp.mapper.ToDtoMapper;
 import clear.solutions.userapp.mapper.ToModelMapper;
-import clear.solutions.userapp.mapper.request.UserRequestMapper;
 import clear.solutions.userapp.model.User;
 import clear.solutions.userapp.service.UserService;
 import java.util.List;
@@ -17,9 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -47,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserResponseDto> findAllByDate(@PathVariable String fromDate, @PathVariable String toDate) {
+    public List<UserResponseDto> findAllByDate(@RequestParam String fromDate, @RequestParam String toDate) {
         return userService.findAllByBirthDateBetween(fromDate, toDate).stream()
                 .map(userResponseMapper::toDto)
                 .collect(Collectors.toList());
