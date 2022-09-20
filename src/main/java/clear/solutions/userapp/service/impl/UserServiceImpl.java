@@ -43,11 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void deleteById(Long id) {
-        try {
             userRepository.deleteById(id);
-        } catch (DataAccessException e) {
-            throw new DataProcessException("No User with id " + id + " exists!");
-        }
     }
 
     private User patchFields(User patchedUser, User originUser) {
