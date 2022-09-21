@@ -61,7 +61,8 @@ class UserControllerTest {
                 .body("email", Matchers.equalTo(USER_EMAIL))
                 .body("firstName", Matchers.equalTo(USER_FIRST_NAME))
                 .body("lastName", Matchers.equalTo(USER_LAST_NAME))
-                .body("birthDate", Matchers.equalTo(LocalDate.now().format(DateTimeFormatter.ISO_DATE)))
+                .body("birthDate", Matchers.equalTo(
+                        LocalDate.now().format(DateTimeFormatter.ISO_DATE)))
                 .body("phoneNumber", Matchers.equalTo(USER_PHONE))
                 .body("address", Matchers.equalTo(USER_ADDRESS));
     }
@@ -106,7 +107,8 @@ class UserControllerTest {
 
     @Test
     public void findAllByDate_ok() {
-        Mockito.when(userService.findAllByBirthDateBetween(Mockito.any(String.class) ,Mockito.any(String.class)))
+        Mockito.when(userService.findAllByBirthDateBetween(Mockito.any(String.class),
+                        Mockito.any(String.class)))
                 .thenReturn(List.of(getUser(1L), getUser(2L)));
 
         RestAssuredMockMvc.given()
