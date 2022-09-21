@@ -14,7 +14,7 @@ class EmailValidatorTest {
     private ConstraintValidatorContext constraintValidatorContext;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         map = new HashMap<>();
         map.put("user.email@com.ua", true);
         map.put("bob@i.ua", true);
