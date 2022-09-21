@@ -40,14 +40,14 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public UserResponseDto updateUser(@PathVariable Long id,
-                                      @RequestBody @Valid UserPatchRequestDto dto) {
+    public UserResponseDto patchUser(@PathVariable Long id,
+                                     @RequestBody @Valid UserPatchRequestDto dto) {
         return userResponseMapper.toDto(userService.patch(id, userPatchRequestMapper.toModel(dto)));
     }
 
     @PutMapping("/{id}")
-    public UserResponseDto updateFullUser(@PathVariable Long id,
-                                          @RequestBody @Valid UserRequestDto dto) {
+    public UserResponseDto updateUser(@PathVariable Long id,
+                                      @RequestBody @Valid UserRequestDto dto) {
         return userResponseMapper.toDto(userService.update(id, userRequestMapper.toModel(dto)));
     }
 
