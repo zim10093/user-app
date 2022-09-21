@@ -1,6 +1,5 @@
 package clear.solutions.userapp.controller;
 
-import clear.solutions.userapp.exception.DataProcessException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({DataProcessException.class, RuntimeException.class})
+    @ExceptionHandler({RuntimeException.class})
     protected ResponseEntity<Object> handleDataProcessingException(Exception ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now().toString());
