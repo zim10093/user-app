@@ -23,7 +23,6 @@ class UserServiceImplTest {
     private UserService userService;
     private UserRepository userRepository;
 
-
     @BeforeEach
     public void setUp() {
         userRepository = Mockito.mock(UserRepository.class);
@@ -82,7 +81,7 @@ class UserServiceImplTest {
 
     @Test
     public void findAllByBirthDateBetween_wrongOrderDate_notOk() {
-        Assertions.assertThrows( RuntimeException.class,
+        Assertions.assertThrows(RuntimeException.class,
                 () -> userService.findAllByBirthDateBetween(TO_DATE, FROM_DATE));
     }
 

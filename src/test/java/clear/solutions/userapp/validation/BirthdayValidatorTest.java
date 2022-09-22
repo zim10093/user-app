@@ -25,7 +25,6 @@ class BirthdayValidatorTest {
         constraintValidatorContext = Mockito.mock(ConstraintValidatorContext.class);
     }
 
-
     @Test
     public void isValid_ok() {
         Assertions.assertTrue(birthdayValidator.isValid(LocalDate.now().minusYears(18)

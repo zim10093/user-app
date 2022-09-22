@@ -1,6 +1,5 @@
 package clear.solutions.userapp.validation;
 
-
 import javax.validation.ConstraintValidatorContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

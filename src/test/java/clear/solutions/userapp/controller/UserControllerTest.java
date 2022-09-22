@@ -69,7 +69,7 @@ class UserControllerTest {
 
     @Test
     public void patchUser_ok() {
-        Mockito.when(userService.patch(Mockito.any(Long.class) ,Mockito.any(User.class)))
+        Mockito.when(userService.patch(Mockito.any(Long.class), Mockito.any(User.class)))
                 .thenReturn(getUser(1L));
 
         RestAssuredMockMvc.given()
@@ -84,7 +84,7 @@ class UserControllerTest {
 
     @Test
     public void updateUser_ok() {
-        Mockito.when(userService.update(Mockito.any(Long.class) ,Mockito.any(User.class)))
+        Mockito.when(userService.update(Mockito.any(Long.class), Mockito.any(User.class)))
                 .thenReturn(getUser(1L));
 
         RestAssuredMockMvc.given()
