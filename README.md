@@ -12,7 +12,7 @@ Where you can create, update, delete user and find users by birth date range.
 -   **Email** (required);
 -   **First name** (required);
 -   **Last name** (required);
--   **Birth date** (required);
+-   **Birth date** (required) - format `2000-12-25`;
 -   **Phone number** (optional);
 -   **Address** (optional);
 #### Features
