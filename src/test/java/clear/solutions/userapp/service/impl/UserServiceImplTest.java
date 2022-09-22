@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.AdditionalAnswers;
 import org.mockito.Mockito;
+import org.springframework.data.domain.PageRequest;
 
 class UserServiceImplTest {
     private static final String USER_EMAIL = "email@gmail.com";
@@ -73,16 +74,18 @@ class UserServiceImplTest {
 
     @Test
     public void findAllByBirthDateBetween_ok() {
-        Mockito.when(userRepository.findAllByBirthDateBetween(Mockito.any(), Mockito.any()))
+        Mockito.when(userRepository.findAllByBirthDateBetween(
+                Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(List.of(getUser(1L), getUser(2L)));
-        List<User> users = userService.findAllByBirthDateBetween(FROM_DATE, TO_DATE);
+        List<User> users = userService
+                .findAllByBirthDateBetween(FROM_DATE, TO_DATE, PageRequest.of(0, 20));
         Assertions.assertEquals(2, users.size());
     }
 
     @Test
     public void findAllByBirthDateBetween_wrongOrderDate_notOk() {
-        Assertions.assertThrows(RuntimeException.class,
-                () -> userService.findAllByBirthDateBetween(TO_DATE, FROM_DATE));
+        Assertions.assertThrows(RuntimeException.class, () -> userService.findAllByBirthDateBetween(
+                        TO_DATE, FROM_DATE, PageRequest.of(0, 20)));
     }
 
     private User getUser(Long id) {

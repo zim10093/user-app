@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,9 +58,13 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserResponseDto> findAllByDate(@RequestParam String fromDate,
-                                               @RequestParam String toDate) {
-        return userService.findAllByBirthDateBetween(fromDate, toDate).stream()
+    public List<UserResponseDto> findAllByDate(
+            @RequestParam (defaultValue = "2000-01-01") String fromDate,
+            @RequestParam (defaultValue = "2030-01-01") String toDate,
+            @RequestParam (defaultValue = "50") Integer count,
+            @RequestParam (defaultValue = "0") Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, count);
+        return userService.findAllByBirthDateBetween(fromDate, toDate, pageRequest).stream()
                 .map(userResponseMapper::toDto)
                 .collect(Collectors.toList());
     }

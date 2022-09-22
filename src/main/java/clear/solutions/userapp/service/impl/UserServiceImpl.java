@@ -6,6 +6,7 @@ import clear.solutions.userapp.service.UserService;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,13 +32,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllByBirthDateBetween(String fromDate, String toDate) {
+    public List<User> findAllByBirthDateBetween(String fromDate, String toDate, Pageable pageable) {
         LocalDate from = LocalDate.parse(fromDate);
         LocalDate to = LocalDate.parse(toDate);
         if (from.isAfter(to)) {
             throw new RuntimeException("Invalid date range. Before date is after to date.");
         }
-        return userRepository.findAllByBirthDateBetween(from, to);
+        return userRepository.findAllByBirthDateBetween(from, to, pageable);
     }
 
     public void deleteById(Long id) {

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -108,7 +109,7 @@ class UserControllerTest {
     @Test
     public void findAllByDate_ok() {
         Mockito.when(userService.findAllByBirthDateBetween(Mockito.any(String.class),
-                        Mockito.any(String.class)))
+                        Mockito.any(String.class), Mockito.any(PageRequest.class)))
                 .thenReturn(List.of(getUser(1L), getUser(2L)));
 
         RestAssuredMockMvc.given()
